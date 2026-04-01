@@ -1,0 +1,43 @@
+#include "stm32f4xx.h"
+
+#define LED1_PORT    GPIOF
+#define LED1_PIN     GPIO_PIN_9
+#define LED2_PORT    GPIOF
+#define LED2_PIN     GPIO_PIN_10
+
+
+void LED1_ON(void){
+	HAL_GPIO_WritePin(LED1_PORT,LED1_PIN,GPIO_PIN_RESET);
+}
+
+void LED1_OFF(void){
+	HAL_GPIO_WritePin(LED1_PORT,LED1_PIN,GPIO_PIN_SET);
+}
+
+void LED2_ON(void){
+	HAL_GPIO_WritePin(LED2_PORT,LED2_PIN,GPIO_PIN_RESET);
+}
+
+void LED2_OFF(void){
+	HAL_GPIO_WritePin(LED2_PORT,LED2_PIN,GPIO_PIN_SET);
+}
+
+void LED1_Toggle(void){
+	if(HAL_GPIO_ReadPin(LED1_PORT,LED1_PIN) == GPIO_PIN_SET){
+		HAL_GPIO_WritePin(LED1_PORT,LED1_PIN,GPIO_PIN_RESET);
+	}else{
+		HAL_GPIO_WritePin(LED1_PORT,LED1_PIN,GPIO_PIN_SET);
+	}
+}
+
+void LED2_Toggle(void){
+	if(HAL_GPIO_ReadPin(LED2_PORT,LED2_PIN) == GPIO_PIN_SET){
+		HAL_GPIO_WritePin(LED2_PORT,LED2_PIN,GPIO_PIN_RESET);
+	}else{
+		HAL_GPIO_WritePin(LED2_PORT,LED2_PIN,GPIO_PIN_SET);
+	}
+}
+
+
+
+
