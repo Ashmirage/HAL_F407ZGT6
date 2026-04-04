@@ -1,6 +1,6 @@
 #include "stm32f4xx.h"
 
-#define Buzzer_PORT GPIOB
+#define Buzzer_PORT GPIOF
 #define Buzzer_PIN GPIO_PIN_8
 #define Buzzer_CLK_FUNCTION() RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
 
@@ -8,18 +8,18 @@
 
 void Buzzer_init(void)
 {
-	HAL_GPIO_WritePin(Buzzer_PORT,Buzzer_PIN,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(Buzzer_PORT,Buzzer_PIN,GPIO_PIN_RESET);
 }
 
 // 注意区分是否是高电平点亮
 void Buzzer_ON(void)
 {
-	HAL_GPIO_WritePin(Buzzer_PORT,Buzzer_PIN,GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(Buzzer_PORT,Buzzer_PIN,GPIO_PIN_SET);
 }
 
 void Buzzer_OFF(void)
 {
-	HAL_GPIO_WritePin(Buzzer_PORT,Buzzer_PIN,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(Buzzer_PORT,Buzzer_PIN,GPIO_PIN_RESET);
 }
 
 static uint8_t alarm_mode = 0; //默认非报警模式

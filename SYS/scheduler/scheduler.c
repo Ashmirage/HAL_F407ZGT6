@@ -4,6 +4,8 @@
 #include "Matrix_keyboard.h"
 #include "Relay.h"
 #include "Buzzer.h"
+#include "delay_us.h"
+#include "DHT11.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -63,7 +65,13 @@ static void Loop_2hz(void)
 // 1s执行一次
 static void Loop_1hz(void)
 {
-	
+	struct DHT11_data data = DHT11_read_data();
+//	Send_printf("status=%d\r\n",data.status);
+	if(data.status == 0){
+		Send_printf("ok! temp=%d,hum=%d\r\n",data.temperature,data.humidity);
+	}else{
+		Send_printf("fail!\r\n");
+	}
 //	My_RTC_readtime();
 //	DHT11_update_data();//DHT11数据读取,这是阻塞式的,25ms左右
 }
@@ -123,6 +131,7 @@ void Scheduler_run(void)
 // 各种外设,驱动的初始化函数
 void Hardware_init(void)
 {
+	DWT_Init(); // 微秒延时初始化
 	My_usart_init(); //串口初始化
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	Relay_init(); //继电器初始化

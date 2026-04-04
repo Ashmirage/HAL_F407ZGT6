@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;../../BSP/Relay;..\..\BSP\Buzzer</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;../../BSP/Relay;../../BSP/Buzzer;../../BSP/DHT11;../../SYS/scheduler;../../SYS/delay_us</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -670,6 +670,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\BSP\Buzzer\Buzzer.h</FilePath>
             </File>
+            <File>
+              <FileName>DHT11.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\DHT11\DHT11.c</FilePath>
+            </File>
+            <File>
+              <FileName>DHT11.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\DHT11\DHT11.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -678,12 +688,22 @@
             <File>
               <FileName>scheduler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\SYS\scheduler.c</FilePath>
+              <FilePath>..\..\SYS\scheduler\scheduler.c</FilePath>
             </File>
             <File>
               <FileName>Scheduler.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\SYS\Scheduler.h</FilePath>
+              <FilePath>..\..\SYS\scheduler\Scheduler.h</FilePath>
+            </File>
+            <File>
+              <FileName>delay_us.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\SYS\delay_us\delay_us.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay_us.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\SYS\delay_us\delay_us.h</FilePath>
             </File>
           </Files>
         </Group>

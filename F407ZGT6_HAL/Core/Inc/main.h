@@ -61,8 +61,8 @@ void Error_Handler(void);
 #define LED_RED_GPIO_Port GPIOF
 #define LED_GREEN_Pin GPIO_PIN_10
 #define LED_GREEN_GPIO_Port GPIOF
-#define Buzzer_Pin GPIO_PIN_8
-#define Buzzer_GPIO_Port GPIOB
+#define DHT11_Pin GPIO_PIN_6
+#define DHT11_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 
