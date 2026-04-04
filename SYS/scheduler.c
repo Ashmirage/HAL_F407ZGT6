@@ -1,5 +1,7 @@
 #include "stm32f4xx.h"
 #include "led.h"
+#include "my_usart.h"
+#include "Matrix_keyboard.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -34,6 +36,10 @@ static void Loop_50hz(void)
 //	APP(20); //APP业务
 //	Buzzer_alarm(20); //蜂鸣器报警
 //	APP_control(); //手动控制
+	uint8_t n = Matrix_keyboard_get_number();
+	if(n != 0){
+		Send_printf("num=%d\r\n",n);;
+	}
 }
 
 // 500ms执行一次
@@ -41,6 +47,7 @@ static void Loop_2hz(void)
 {
 	LED1_Toggle();
 	LED2_Toggle();
+	//Send_printf("Hello\r\n");
 //	Send_printf("main running...\r\n");
 //	Send_printf("time=%d %d %d %d %d %d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
 ////	W25Q128_ReadData(PASSWORD_ADDRESS,ArrayRead,7);
@@ -110,6 +117,8 @@ void Scheduler_run(void)
 // 各种外设,驱动的初始化函数
 void Hardware_init(void)
 {
+	My_usart_init();
+	Matrix_keyboard_init();
 //	My_usart_init(115200); //串口初始化
 //	TIM_it_init(); //定时器初始化
 //	Matrix_keyboard_init(); //矩阵键盘初始化
