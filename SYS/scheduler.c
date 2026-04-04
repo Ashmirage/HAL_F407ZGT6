@@ -3,6 +3,7 @@
 #include "my_usart.h"
 #include "Matrix_keyboard.h"
 #include "Relay.h"
+#include "Buzzer.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -45,7 +46,12 @@ static void Loop_2hz(void)
 {
 	LED1_Toggle();
 	LED2_Toggle();
-	Relay_status(n);
+	//Relay_status(n);
+//	if(n){
+//		Buzzer_ON();
+//	}else{
+//		Buzzer_OFF();
+//	}
 	n = 1 - n;
 	//Send_printf("Hello\r\n");
 //	Send_printf("main running...\r\n");
@@ -118,8 +124,9 @@ void Scheduler_run(void)
 void Hardware_init(void)
 {
 	My_usart_init(); //串口初始化
-	Matrix_keyboard_init(); //矩阵键盘初始化
-	Relay_init(); //继电器初始化
+//	Matrix_keyboard_init(); //矩阵键盘初始化
+//	Relay_init(); //继电器初始化
+	Buzzer_init();  // 蜂鸣器初始化
 //	My_usart_init(115200); //串口初始化
 //	TIM_it_init(); //定时器初始化
 //	Matrix_keyboard_init(); //矩阵键盘初始化
