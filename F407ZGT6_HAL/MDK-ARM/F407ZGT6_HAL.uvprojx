@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;..\..\BSP\Relay</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -649,6 +649,16 @@
               <FileName>my_usart.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\BSP\Usart\my_usart.h</FilePath>
+            </File>
+            <File>
+              <FileName>Relay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\Relay\Relay.c</FilePath>
+            </File>
+            <File>
+              <FileName>Relay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\Relay\Relay.h</FilePath>
             </File>
           </Files>
         </Group>

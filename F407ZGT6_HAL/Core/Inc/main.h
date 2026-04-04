@@ -69,6 +69,8 @@ void Error_Handler(void);
 #define COL2_GPIO_Port GPIOA
 #define COL1_Pin GPIO_PIN_6
 #define COL1_GPIO_Port GPIOA
+#define RELAY_Pin GPIO_PIN_4
+#define RELAY_GPIO_Port GPIOC
 #define ROW1_Pin GPIO_PIN_15
 #define ROW1_GPIO_Port GPIOB
 #define ROW2_Pin GPIO_PIN_12
