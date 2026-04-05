@@ -3,7 +3,6 @@
 #include <math.h>
 #include "adc.h"
 
-#define LDR_READ_TIMES	10  //光照传感器ADC循环读取次数
 
 // 电位器模块
 

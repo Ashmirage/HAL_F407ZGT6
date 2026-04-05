@@ -6,10 +6,7 @@
 #include "Buzzer.h"
 #include "delay_us.h"
 #include "DHT11.h"
-#include "AD.h"
-#include "LDR.h"
-#include "adc.h"
-#include "pot.h"
+#include "RTC_clk.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -23,7 +20,7 @@ static void Loop_1000hz(void)
 {
 //	APP_data_update(); //信息采集
 //	Stepmotor_Rhythm_1ms(); // 步进电机
-	LDR_ADC_Read_1ms(); //光敏ADC采样读取
+//	LDR_ADC_Read_1ms(); //光敏ADC采样读取
 }
 
 // 2ms执行一次
@@ -44,7 +41,6 @@ static void Loop_50hz(void)
 //	APP(20); //APP业务
 //	Buzzer_alarm(20); //蜂鸣器报警
 //	APP_control(); //手动控制
-	Send_printf("Lux=%d,Pot=%.3f\r\n",LDR_LuxData(),Pot_GetVoltage());
 }
 
 uint8_t n;
@@ -70,7 +66,9 @@ static void Loop_2hz(void)
 // 1s执行一次
 static void Loop_1hz(void)
 {
-//	My_RTC_readtime();
+	My_RTC_readtime();
+	Send_printf("%d-%d-%d %d-%d-%d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
+
 //	DHT11_update_data();//DHT11数据读取,这是阻塞式的,25ms左右
 }
 
@@ -131,6 +129,7 @@ void Hardware_init(void)
 {
 	DWT_Init(); // 微秒延时初始化
 	My_usart_init(); //串口初始化
+	My_RTC_settime(); // rtc实时始终设置时间
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	Relay_init(); //继电器初始化
 //	Buzzer_init();  // 蜂鸣器初始化
@@ -141,7 +140,6 @@ void Hardware_init(void)
 //	Buzzer_init(); //蜂鸣器初始化
 //	LCD_Init(1); //LCD显示屏初始化
 //	Relay_init(); //继电器初始化
-	AD_init(); //AD转换初始化
 //	Motor_init();//直流电机初始化
 //	STEPMOTOR_Init(); //步进电机初始化
 //	W25Q128_Init(); //FLASH初始化
