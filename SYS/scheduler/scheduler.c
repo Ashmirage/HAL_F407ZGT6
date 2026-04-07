@@ -5,8 +5,7 @@
 #include "Relay.h"
 #include "Buzzer.h"
 #include "delay_us.h"
-#include "DHT11.h"
-#include "RTC_clk.h"
+#include "Motor.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -64,10 +63,22 @@ static void Loop_2hz(void)
 }
 
 // 1s执行一次
+int16_t speed = 0;
+int8_t dir = 1;
 static void Loop_1hz(void)
 {
-	My_RTC_readtime();
-	Send_printf("%d-%d-%d %d-%d-%d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
+	speed += dir * 20;
+	if(speed >= 100){
+		dir = -dir;
+		speed = 100;
+	}else if(speed <= -100){
+		dir = -dir;
+		speed = -100;
+	}
+	Motor_set_speed(speed);
+	Send_printf("speed=%d\r\n",speed);
+//	My_RTC_readtime();
+//	Send_printf("%d-%d-%d %d-%d-%d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
 
 //	DHT11_update_data();//DHT11数据读取,这是阻塞式的,25ms左右
 }
@@ -129,7 +140,7 @@ void Hardware_init(void)
 {
 	DWT_Init(); // 微秒延时初始化
 	My_usart_init(); //串口初始化
-	My_RTC_settime(); // rtc实时始终设置时间
+//	My_RTC_settime(); // rtc实时始终设置时间
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	Relay_init(); //继电器初始化
 //	Buzzer_init();  // 蜂鸣器初始化
@@ -140,7 +151,7 @@ void Hardware_init(void)
 //	Buzzer_init(); //蜂鸣器初始化
 //	LCD_Init(1); //LCD显示屏初始化
 //	Relay_init(); //继电器初始化
-//	Motor_init();//直流电机初始化
+	Motor_init();//直流电机初始化
 //	STEPMOTOR_Init(); //步进电机初始化
 //	W25Q128_Init(); //FLASH初始化
 //	RTC_clk_init(); //RTC初始化
