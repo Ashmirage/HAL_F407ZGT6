@@ -5,7 +5,7 @@
 #include "Relay.h"
 #include "Buzzer.h"
 #include "delay_us.h"
-#include "Motor.h"
+#include "stepmotor.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -18,7 +18,7 @@
 static void Loop_1000hz(void)
 {
 //	APP_data_update(); //信息采集
-//	Stepmotor_Rhythm_1ms(); // 步进电机
+	Stepmotor_Rhythm_1ms(); // 步进电机
 //	LDR_ADC_Read_1ms(); //光敏ADC采样读取
 }
 
@@ -63,20 +63,14 @@ static void Loop_2hz(void)
 }
 
 // 1s执行一次
-int16_t speed = 0;
-int8_t dir = 1;
+uint16_t t = 0;
 static void Loop_1hz(void)
 {
-	speed += dir * 20;
-	if(speed >= 100){
-		dir = -dir;
-		speed = 100;
-	}else if(speed <= -100){
-		dir = -dir;
-		speed = -100;
+	t++;
+	if(t % 5 == 0){
+		Stepmotor_angle_dir(0,180,1);
 	}
-	Motor_set_speed(speed);
-	Send_printf("speed=%d\r\n",speed);
+	Send_printf("t=%d\r\n",t);
 //	My_RTC_readtime();
 //	Send_printf("%d-%d-%d %d-%d-%d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
 
@@ -151,8 +145,8 @@ void Hardware_init(void)
 //	Buzzer_init(); //蜂鸣器初始化
 //	LCD_Init(1); //LCD显示屏初始化
 //	Relay_init(); //继电器初始化
-	Motor_init();//直流电机初始化
-//	STEPMOTOR_Init(); //步进电机初始化
+//	Motor_init();//直流电机初始化
+	STEPMOTOR_Init(); //步进电机初始化
 //	W25Q128_Init(); //FLASH初始化
 //	RTC_clk_init(); //RTC初始化
 ////	W25Q128_SectorErase(PASSWORD_ADDRESS);

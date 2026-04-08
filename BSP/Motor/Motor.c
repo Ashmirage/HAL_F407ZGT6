@@ -7,7 +7,7 @@
 #define MOTOR_AIN_PORT GPIOA
 #define MOTOR_AIN1_PIN GPIO_PIN_4
 #define MOTOR_AIN2_PIN GPIO_PIN_6
-//#define MOTOR_AIN_CLK_FUNCTION() RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE);
+
 
 //注意,直流电机不要大幅度改变方向,否则迅速发热且无法突破扭矩(也可能是电机本身质量问题)
 //电压尽量高一点,5V很勉强
