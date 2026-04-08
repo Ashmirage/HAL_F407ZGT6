@@ -4,3 +4,6 @@
 
 // f103系列的只有ADC1才支持DMA,不要使用ADC3和ADC2
 // 扫描模式注意修改结构体配置
+
+
+DMA转运需要勾选mode为circular

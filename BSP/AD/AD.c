@@ -1,14 +1,14 @@
 #include "stm32f4xx.h"
 #include "adc.h"
 
-#define ADC_CHANNEL1_PORT GPIOC
-#define ADC_CHANNEL1_PIN  GPIO_Pin_5
-#define ADC_CHANNEL1_NAME ADC_Channel_15
-#define ADC_CHANNEL2_PORT GPIOF
-#define ADC_CHANNEL2_PIN  GPIO_Pin_6
-#define ADC_CHANNEL2_NAME ADC_Channel_4
-#define ADC_CHANNEL_NUM 1
-#define DMA_CHANNEL_NUM 1
+//#define ADC_CHANNEL1_PORT GPIOC
+//#define ADC_CHANNEL1_PIN  GPIO_Pin_5
+//#define ADC_CHANNEL1_NAME ADC_Channel_15
+//#define ADC_CHANNEL2_PORT GPIOF
+//#define ADC_CHANNEL2_PIN  GPIO_Pin_6
+//#define ADC_CHANNEL2_NAME ADC_Channel_4
+//#define ADC_CHANNEL_NUM 1
+//#define DMA_CHANNEL_NUM 1
 
 
 // 注意f103系列的芯片的dma外设只有一个dma1 
@@ -27,7 +27,7 @@ volatile uint16_t AD_Value[4];
 void AD_init(void)
 {
 	HAL_ADC_Start(&hadc3);
-	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)AD_Value, 2); // 开启dma转运
+	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)AD_Value, 1); // 开启dma转运
 }
 
 

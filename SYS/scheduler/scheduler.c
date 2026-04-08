@@ -5,7 +5,8 @@
 #include "Relay.h"
 #include "Buzzer.h"
 #include "delay_us.h"
-#include "stepmotor.h"
+#include "Temp.h"
+#include "AD.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -18,7 +19,7 @@
 static void Loop_1000hz(void)
 {
 //	APP_data_update(); //信息采集
-	Stepmotor_Rhythm_1ms(); // 步进电机
+//	Stepmotor_Rhythm_1ms(); // 步进电机
 //	LDR_ADC_Read_1ms(); //光敏ADC采样读取
 }
 
@@ -42,19 +43,19 @@ static void Loop_50hz(void)
 //	APP_control(); //手动控制
 }
 
-uint8_t n;
 // 500ms执行一次
 static void Loop_2hz(void)
 {
 	LED1_Toggle();
 	LED2_Toggle();
+	Send_printf("temp=%.3f\r\n",Temp_get_t());
+//	Send_printf("ad=%d\r\n",AD_Value[0]);
 	//Relay_status(n);
 //	if(n){
 //		Buzzer_ON();
 //	}else{
 //		Buzzer_OFF();
 //	}
-	n = 1 - n;
 	//Send_printf("Hello\r\n");
 //	Send_printf("main running...\r\n");
 //	Send_printf("time=%d %d %d %d %d %d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
@@ -63,14 +64,8 @@ static void Loop_2hz(void)
 }
 
 // 1s执行一次
-uint16_t t = 0;
 static void Loop_1hz(void)
 {
-	t++;
-	if(t % 5 == 0){
-		Stepmotor_angle_dir(0,180,1);
-	}
-	Send_printf("t=%d\r\n",t);
 //	My_RTC_readtime();
 //	Send_printf("%d-%d-%d %d-%d-%d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
 
@@ -134,6 +129,7 @@ void Hardware_init(void)
 {
 	DWT_Init(); // 微秒延时初始化
 	My_usart_init(); //串口初始化
+	AD_init(); // AD转换初始化
 //	My_RTC_settime(); // rtc实时始终设置时间
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	Relay_init(); //继电器初始化
@@ -146,7 +142,7 @@ void Hardware_init(void)
 //	LCD_Init(1); //LCD显示屏初始化
 //	Relay_init(); //继电器初始化
 //	Motor_init();//直流电机初始化
-	STEPMOTOR_Init(); //步进电机初始化
+//	STEPMOTOR_Init(); //步进电机初始化
 //	W25Q128_Init(); //FLASH初始化
 //	RTC_clk_init(); //RTC初始化
 ////	W25Q128_SectorErase(PASSWORD_ADDRESS);
