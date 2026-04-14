@@ -24,33 +24,160 @@ typedef enum{
 volatile static APP_STATUS app_status;
 const char blank[] = "                          ";
 
-// 24的字体大小,320的屏幕宽度,大约可以显示26个字母
-const static char bootup_str_row1[] = "  Z   N   J   J   X   T   ";
-const static char bootup_str_row2[] = "      0   2   0   8       ";
-#define SHOW_LEN 26
-#define TEXT_LEN 52
+#define UI_FONT_SIZE         24U // 字体大小
+#define UI_CHAR_WIDTH        24U   // 间距宽度
+#define UI_FRAME_MS          20U // 字幕移动速度, 越小越快
+#define UI_SCROLL_DURATION   10000U   //持续时间
+#define UI_ROW_GAP           120U   // 纵向宽度
+
+static uint16_t UI_StrLen(const char *str)
+{
+	uint16_t len = 0;
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+	return len;
+}
+
+static uint16_t UI_MaxU16(uint16_t a, uint16_t b)
+{
+	return (a > b) ? a : b;
+}
+
+static void UI_DrawLineWithClip(const char *str, int16_t x, int16_t y)
+{
+	uint16_t i;
+
+	if (y < 0 || y > (int16_t)(lcddev.height - UI_FONT_SIZE))
+	{
+		return;
+	}
+
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		int16_t xi = x + (int16_t)(i * UI_CHAR_WIDTH);
+		if (xi > -(int16_t)UI_CHAR_WIDTH && xi < (int16_t)lcddev.width)
+		{
+			LCD_ShowChar((u16)xi, (u16)y, (u8)str[i], UI_FONT_SIZE, 1);
+		}
+	}
+}
+
+static void UI_Scroll_LeftToRight(const char *row1, const char *row2, uint32_t duration_ms)
+{
+	uint16_t w1 = UI_StrLen(row1) * UI_CHAR_WIDTH;
+	uint16_t w2 = UI_StrLen(row2) * UI_CHAR_WIDTH;
+	uint16_t block_w = UI_MaxU16(w1, w2);
+	int16_t x = -(int16_t)block_w;
+	int16_t y1 = (int16_t)(lcddev.height / 4U);
+	int16_t y2 = y1 + (int16_t)UI_ROW_GAP;
+	uint32_t start = HAL_GetTick();
+
+	while ((HAL_GetTick() - start) < duration_ms)
+	{
+		LCD_Clear(WHITE);
+		UI_DrawLineWithClip(row1, x + (int16_t)((block_w - w1) / 2U), y1);
+		UI_DrawLineWithClip(row2, x + (int16_t)((block_w - w2) / 2U), y2);
+		HAL_Delay(UI_FRAME_MS);
+		x += 6;
+		if (x > (int16_t)lcddev.width)
+		{
+			x = -(int16_t)block_w;
+		}
+	}
+}
+
+static void UI_Scroll_RightToLeft(const char *row1, const char *row2, uint32_t duration_ms)
+{
+	uint16_t w1 = UI_StrLen(row1) * UI_CHAR_WIDTH;
+	uint16_t w2 = UI_StrLen(row2) * UI_CHAR_WIDTH;
+	uint16_t block_w = UI_MaxU16(w1, w2);
+	int16_t x = (int16_t)lcddev.width;
+	int16_t y1 = (int16_t)(lcddev.height / 4U);
+	int16_t y2 = y1 + (int16_t)UI_ROW_GAP;
+	uint32_t start = HAL_GetTick();
+
+	while ((HAL_GetTick() - start) < duration_ms)
+	{
+		LCD_Clear(WHITE);
+		UI_DrawLineWithClip(row1, x + (int16_t)((block_w - w1) / 2U), y1);
+		UI_DrawLineWithClip(row2, x + (int16_t)((block_w - w2) / 2U), y2);
+		HAL_Delay(UI_FRAME_MS);
+		x -= 6;
+		if (x < -(int16_t)block_w)
+		{
+			x = (int16_t)lcddev.width;
+		}
+	}
+}
+
+static void UI_Scroll_TopToBottom(const char *row1, const char *row2, uint32_t duration_ms)
+{
+	uint16_t w1 = UI_StrLen(row1) * UI_CHAR_WIDTH;
+	uint16_t w2 = UI_StrLen(row2) * UI_CHAR_WIDTH;
+	int16_t x1 = (int16_t)((lcddev.width - w1) / 2U);
+	int16_t x2 = (int16_t)((lcddev.width - w2) / 2U);
+	int16_t block_h = (int16_t)(UI_FONT_SIZE + UI_ROW_GAP);
+	int16_t y = -block_h;
+	uint32_t start = HAL_GetTick();
+
+	while ((HAL_GetTick() - start) < duration_ms)
+	{
+		LCD_Clear(WHITE);
+		UI_DrawLineWithClip(row1, x1, y);
+		UI_DrawLineWithClip(row2, x2, y + (int16_t)UI_ROW_GAP);
+		HAL_Delay(UI_FRAME_MS);
+		y += 6;
+		if (y > (int16_t)lcddev.height)
+		{
+			y = -block_h;
+		}
+	}
+}
+
+static void UI_Scroll_BottomToTop(const char *row1, const char *row2, uint32_t duration_ms)
+{
+	uint16_t w1 = UI_StrLen(row1) * UI_CHAR_WIDTH;
+	uint16_t w2 = UI_StrLen(row2) * UI_CHAR_WIDTH;
+	int16_t x1 = (int16_t)((lcddev.width - w1) / 2U);
+	int16_t x2 = (int16_t)((lcddev.width - w2) / 2U);
+	int16_t block_h = (int16_t)(UI_FONT_SIZE + UI_ROW_GAP);
+	int16_t y = (int16_t)lcddev.height;
+	uint32_t start = HAL_GetTick();
+
+	while ((HAL_GetTick() - start) < duration_ms)
+	{
+		LCD_Clear(WHITE);
+		UI_DrawLineWithClip(row1, x1, y);
+		UI_DrawLineWithClip(row2, x2, y + (int16_t)UI_ROW_GAP);
+		HAL_Delay(UI_FRAME_MS);
+		y -= 6;
+		if (y < -block_h)
+		{
+			y = (int16_t)lcddev.height;
+		}
+	}
+}
 
 // 开机滚动动画
 void Lcd_bootup_scrolling(void)
 {
-	u32 start = HAL_GetTick();
-//	Send_printf("start=%d\r\n",start);
-	while((HAL_GetTick() - start) <= 3000)// 限制三秒时间
-	{
-		int8_t right = 25,left = 24;
-		while(left > 0)
-		{
-			LCD_Clear(WHITE);
-			uint8_t i;
-			for(i = left;i < right;i++)
-			{
-				LCD_ShowChar((i - left) * 13,100,bootup_str_row1[i],24,1); //依次打印字符
-				LCD_ShowChar((i - left) * 13,300,bootup_str_row2[i],24,1); //依次打印字符
-			}
-			left--;
-			HAL_Delay(90); //稍微延迟一下,防止刷屏严重
-		}	
-	}
+	const char row1_phase1[] = "ZNJJXT";
+	const char row2_phase1[] = "0208";
+	/* 当前字库接口以 ASCII 为主，中文可后续接入字库后替换为 "22油烟机" */
+	const char row1_phase2[] = "22 YOUYANJI";
+	const char row2_phase2[] = "Y008";
+
+	UI_Scroll_LeftToRight(row1_phase1, row2_phase1, UI_SCROLL_DURATION);
+	UI_Scroll_BottomToTop(row1_phase2, row2_phase2, UI_SCROLL_DURATION);
+
+	/* 保留四个方向函数：
+	 * UI_Scroll_LeftToRight
+	 * UI_Scroll_RightToLeft
+	 * UI_Scroll_TopToBottom
+	 * UI_Scroll_BottomToTop
+	 */
 }
 
 //static char default_password[7]; //默认密码
@@ -464,7 +591,5 @@ void Lcd_bootup_scrolling(void)
 ////		
 ////	}
 ////}
-
-
 
 
