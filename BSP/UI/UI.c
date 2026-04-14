@@ -27,7 +27,7 @@ const char blank[] = "                          ";
 #define UI_FONT_SIZE         24U // 字体大小
 #define UI_CHAR_WIDTH        24U   // 间距宽度
 #define UI_FRAME_MS          20U // 字幕移动速度, 越小越快
-#define UI_SCROLL_DURATION   10000U   //持续时间
+#define UI_SCROLL_DURATION   3000U   //持续时间
 #define UI_ROW_GAP           120U   // 纵向宽度
 
 static uint16_t UI_StrLen(const char *str)
@@ -168,7 +168,7 @@ void Lcd_bootup_scrolling(void)
 	/* 当前字库接口以 ASCII 为主，中文可后续接入字库后替换为 "22油烟机" */
 	const char row1_phase2[] = "22 YOUYANJI";
 	const char row2_phase2[] = "Y008";
-
+	
 	UI_Scroll_LeftToRight(row1_phase1, row2_phase1, UI_SCROLL_DURATION);
 	UI_Scroll_BottomToTop(row1_phase2, row2_phase2, UI_SCROLL_DURATION);
 

@@ -191,6 +191,7 @@ void LCD_Set_Window(u16 sx,u16 sy,u16 width,u16 height);	//…Ë÷√¥∞ø⁄
 #define SSD_VT 	(SSD_VER_RESOLUTION+SSD_VER_BACK_PORCH+SSD_VER_FRONT_PORCH)
 #define SSD_VPS (SSD_VER_BACK_PORCH)
 
+void LCD_ShowHZ24_Dot(u16 x,u16 y,const u8 *dot,u8 mode);
 #endif  
 	 
 	 

@@ -1199,6 +1199,11 @@
               <FileType>5</FileType>
               <FilePath>..\..\BSP\UI\UI.h</FilePath>
             </File>
+            <File>
+              <FileName>lcd_font.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\LCD\lcd_font.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

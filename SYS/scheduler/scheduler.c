@@ -7,6 +7,7 @@
 #include "delay_us.h"
 #include "lcd.h"
 #include "UI.h"
+#include "lcd_font.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -71,24 +72,28 @@ u8 x=0;
 // 1s执行一次
 static void Loop_1hz(void)
 {
-	switch(x)
-	{
-		case 0:LCD_Clear(WHITE);break;
-		case 1:LCD_Clear(BLACK);break;
-		case 2:LCD_Clear(BLUE);break;
-		case 3:LCD_Clear(RED);break;
-		case 4:LCD_Clear(MAGENTA);break;
-		case 5:LCD_Clear(GREEN);break;
-		case 6:LCD_Clear(CYAN);break;
+	LCD_ShowHZ24_Dot(0,0,HZ24_NI,1);
+	LCD_ShowHZ24_Dot(30,0,HZ24_HAO,1);
+	LCD_ShowHZ24_Dot(60,0,HZ24_SHI,1);
+	LCD_ShowHZ24_Dot(90,0,HZ24_JIE,1);
+//	switch(x)
+//	{
+//		case 0:LCD_Clear(WHITE);break;
+//		case 1:LCD_Clear(BLACK);break;
+//		case 2:LCD_Clear(BLUE);break;
+//		case 3:LCD_Clear(RED);break;
+//		case 4:LCD_Clear(MAGENTA);break;
+//		case 5:LCD_Clear(GREEN);break;
+//		case 6:LCD_Clear(CYAN);break;
 
-		case 7:LCD_Clear(YELLOW);break;
-		case 8:LCD_Clear(BRRED);break;
-		case 9:LCD_Clear(GRAY);break;
-		case 10:LCD_Clear(LGRAY);break;
-		case 11:LCD_Clear(BROWN);break;
-	}
-	x++;
-	if(x==12)x=0;
+//		case 7:LCD_Clear(YELLOW);break;
+//		case 8:LCD_Clear(BRRED);break;
+//		case 9:LCD_Clear(GRAY);break;
+//		case 10:LCD_Clear(LGRAY);break;
+//		case 11:LCD_Clear(BROWN);break;
+//	}
+//	x++;
+//	if(x==12)x=0;
 //	My_RTC_readtime();
 //	Send_printf("%d-%d-%d %d-%d-%d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
 
