@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "rtc.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 #include "fsmc.h"
@@ -94,6 +95,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_RTC_Init();
   MX_FSMC_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   Scheduler_init(); // 任务调度器初始化
   Hardware_init(); // 硬件初始�?

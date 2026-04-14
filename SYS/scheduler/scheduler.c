@@ -8,6 +8,7 @@
 #include "lcd.h"
 #include "UI.h"
 #include "lcd_font.h"
+#include "remote.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -30,10 +31,15 @@ static void Loop_500hz(void)
 	
 }
 
+uint8_t command = 0;
 // 5ms执行一次
 static void Loop_200hz(void)
 {
-	
+	command = remote_scan();
+	if(command != 0)
+	{
+		Send_printf("command=%d\r\n",command);		
+	}
 }
 
 // 20ms执行一次
@@ -51,7 +57,8 @@ static void Loop_2hz(void)
 {
 	LED1_Toggle();
 	LED2_Toggle();
-	Send_printf("hello\r\n");
+	
+//	Send_printf("hello\r\n");
 //	W25Q128_ReadID(&mid,&did);
 //	Send_printf("mid=%d,did=%d\r\n",mid,did);
 //	Send_printf("ad=%d\r\n",AD_Value[0]);
@@ -157,6 +164,7 @@ void Hardware_init(void)
 {
 	DWT_Init(); // 微秒延时初始化
 	My_usart_init(); //串口初始化
+	remote_init(); //红外遥控器初始化
 //	My_RTC_settime(); // rtc实时始终设置时间
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	Relay_init(); //继电器初始化
@@ -167,7 +175,7 @@ void Hardware_init(void)
 //	LED_init(); //LED初始化
 //	Buzzer_init(); //蜂鸣器初始化
 	LCD_Init(); //LCD显示屏初始化
-	Lcd_bootup_scrolling(); // 
+//	Lcd_bootup_scrolling(); // 
 //	Relay_init(); //继电器初始化
 //	Motor_init();//直流电机初始化
 //	STEPMOTOR_Init(); //步进电机初始化
