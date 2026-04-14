@@ -5,8 +5,8 @@
 #include "Relay.h"
 #include "Buzzer.h"
 #include "delay_us.h"
-#include "Temp.h"
-#include "AD.h"
+#include "lcd.h"
+#include "UI.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -44,11 +44,15 @@ static void Loop_50hz(void)
 }
 
 // 500ms执行一次
+uint8_t mid;
+uint16_t did;
 static void Loop_2hz(void)
 {
 	LED1_Toggle();
 	LED2_Toggle();
-	Send_printf("temp=%.3f\r\n",Temp_get_t());
+	Send_printf("hello\r\n");
+//	W25Q128_ReadID(&mid,&did);
+//	Send_printf("mid=%d,did=%d\r\n",mid,did);
 //	Send_printf("ad=%d\r\n",AD_Value[0]);
 	//Relay_status(n);
 //	if(n){
@@ -63,9 +67,28 @@ static void Loop_2hz(void)
 ////	Send_printf("%c%c%c%c%c%c\r\n",ArrayRead[0],ArrayRead[1],ArrayRead[2],ArrayRead[3],ArrayRead[4],ArrayRead[5]);
 }
 
+u8 x=0;	
 // 1s执行一次
 static void Loop_1hz(void)
 {
+	switch(x)
+	{
+		case 0:LCD_Clear(WHITE);break;
+		case 1:LCD_Clear(BLACK);break;
+		case 2:LCD_Clear(BLUE);break;
+		case 3:LCD_Clear(RED);break;
+		case 4:LCD_Clear(MAGENTA);break;
+		case 5:LCD_Clear(GREEN);break;
+		case 6:LCD_Clear(CYAN);break;
+
+		case 7:LCD_Clear(YELLOW);break;
+		case 8:LCD_Clear(BRRED);break;
+		case 9:LCD_Clear(GRAY);break;
+		case 10:LCD_Clear(LGRAY);break;
+		case 11:LCD_Clear(BROWN);break;
+	}
+	x++;
+	if(x==12)x=0;
 //	My_RTC_readtime();
 //	Send_printf("%d-%d-%d %d-%d-%d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
 
@@ -129,7 +152,6 @@ void Hardware_init(void)
 {
 	DWT_Init(); // 微秒延时初始化
 	My_usart_init(); //串口初始化
-	AD_init(); // AD转换初始化
 //	My_RTC_settime(); // rtc实时始终设置时间
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	Relay_init(); //继电器初始化
@@ -139,7 +161,8 @@ void Hardware_init(void)
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	LED_init(); //LED初始化
 //	Buzzer_init(); //蜂鸣器初始化
-//	LCD_Init(1); //LCD显示屏初始化
+	LCD_Init(); //LCD显示屏初始化
+	Lcd_bootup_scrolling(); // 
 //	Relay_init(); //继电器初始化
 //	Motor_init();//直流电机初始化
 //	STEPMOTOR_Init(); //步进电机初始化
