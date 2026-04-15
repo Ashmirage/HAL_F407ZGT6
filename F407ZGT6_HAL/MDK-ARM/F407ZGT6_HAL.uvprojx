@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;../../BSP/Relay;../../BSP/Buzzer;../../BSP/DHT11;../../SYS/scheduler;../../SYS/delay_us;../../BSP/LCD;../../BSP/sys;../../BSP/UI;..\..\BSP\REMOTE</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;../../BSP/Relay;../../BSP/Buzzer;../../BSP/DHT11;../../SYS/scheduler;../../SYS/delay_us;../../BSP/LCD;../../BSP/sys;../../BSP/UI;../../BSP/REMOTE;..\..\BSP\Countsensor</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1274,6 +1274,21 @@
               <FileName>TIM_All_callback.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\BSP\MY_TIM\TIM_All_callback.c</FilePath>
+            </File>
+            <File>
+              <FileName>CountSensor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\Countsensor\CountSensor.c</FilePath>
+            </File>
+            <File>
+              <FileName>CountSensor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\Countsensor\CountSensor.h</FilePath>
+            </File>
+            <File>
+              <FileName>EXTI_All_callback.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\MY_EXTI\EXTI_All_callback.c</FilePath>
             </File>
           </Files>
         </Group>

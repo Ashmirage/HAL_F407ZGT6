@@ -9,6 +9,7 @@
 #include "UI.h"
 #include "lcd_font.h"
 #include "remote.h"
+#include "CountSensor.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -31,15 +32,14 @@ static void Loop_500hz(void)
 	
 }
 
-uint8_t command = 0;
 // 5ms执行一次
 static void Loop_200hz(void)
 {
-	command = remote_scan();
-	if(command != 0)
-	{
-		Send_printf("command=%d\r\n",command);		
-	}
+//	command = remote_scan();
+//	if(command != 0)
+//	{
+//		Send_printf("command=%d\r\n",command);		
+//	}
 }
 
 // 20ms执行一次
@@ -48,6 +48,7 @@ static void Loop_50hz(void)
 //	APP(20); //APP业务
 //	Buzzer_alarm(20); //蜂鸣器报警
 //	APP_control(); //手动控制
+	Send_printf("count=%d\r\n",CountSensor_Get());
 }
 
 // 500ms执行一次
@@ -165,6 +166,7 @@ void Hardware_init(void)
 	DWT_Init(); // 微秒延时初始化
 	My_usart_init(); //串口初始化
 	remote_init(); //红外遥控器初始化
+	CountSensor_Init(); //对射式红外传感器初始化
 //	My_RTC_settime(); // rtc实时始终设置时间
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	Relay_init(); //继电器初始化

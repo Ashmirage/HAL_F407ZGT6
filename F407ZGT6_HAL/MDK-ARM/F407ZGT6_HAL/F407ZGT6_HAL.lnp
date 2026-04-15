@@ -41,6 +41,8 @@
 "f407zgt6_hal\ui.o"
 "f407zgt6_hal\remote.o"
 "f407zgt6_hal\tim_all_callback.o"
+"f407zgt6_hal\countsensor.o"
+"f407zgt6_hal\exti_all_callback.o"
 "f407zgt6_hal\scheduler.o"
 "f407zgt6_hal\delay_us.o"
 "f407zgt6_hal\sys.o"
