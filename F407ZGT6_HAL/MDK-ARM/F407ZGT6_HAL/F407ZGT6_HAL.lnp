@@ -43,6 +43,8 @@
 "f407zgt6_hal\tim_all_callback.o"
 "f407zgt6_hal\countsensor.o"
 "f407zgt6_hal\exti_all_callback.o"
+"f407zgt6_hal\syn6288.o"
+"f407zgt6_hal\hw.o"
 "f407zgt6_hal\scheduler.o"
 "f407zgt6_hal\delay_us.o"
 "f407zgt6_hal\sys.o"

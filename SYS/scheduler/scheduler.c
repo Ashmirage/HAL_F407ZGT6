@@ -10,6 +10,8 @@
 #include "lcd_font.h"
 #include "remote.h"
 #include "CountSensor.h"
+#include "syn6288.h"
+#include "HW.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -48,7 +50,8 @@ static void Loop_50hz(void)
 //	APP(20); //APP业务
 //	Buzzer_alarm(20); //蜂鸣器报警
 //	APP_control(); //手动控制
-	Send_printf("count=%d\r\n",CountSensor_Get());
+//	Send_printf("count=%d\r\n",CountSensor_Get());
+	Send_printf("is_blocked=%d\r\n",HW_GetData()) ;
 }
 
 // 500ms执行一次
@@ -159,7 +162,11 @@ void Scheduler_run(void)
 	}
 }
 
-
+//选择背景音乐2。(0：无背景音乐  1-15：背景音乐可选)
+		//m[0~16]:0背景音乐为静音，16背景音乐音量最大
+		//v[0~16]:0朗读音量为静音，16朗读音量最大
+		//t[0~5]:0朗读语速最慢，5朗读语速最快
+		//其他不常用功能请参考数据手册
 // 各种外设,驱动的初始化函数
 void Hardware_init(void)
 {
@@ -167,6 +174,16 @@ void Hardware_init(void)
 	My_usart_init(); //串口初始化
 	remote_init(); //红外遥控器初始化
 	CountSensor_Init(); //对射式红外传感器初始化
+	HW_Init(); //光电红外传感器初始化
+//	SYN_FrameInfo(2, "[d][v7][m1][t5]");
+//	SYN_FrameInfo(2, "[d][v7][m1][t5]\xBB\xB6\xD3\xAD\xCA\xB9\xD3\xC3\xC2\xCC\xC9\xEE\xC6\xEC\xBD\xA2\xB5\xEASYN6288\xD3\xEF\xD2\xF4\xBA\xCF\xB3\xC9\xC4\xA3\xBF\xE9");
+//	HAL_Delay(1500);
+//	HAL_Delay(1500);
+//	HAL_Delay(1500);
+//	HAL_Delay(1500);
+//	HAL_Delay(1500);
+//	HAL_Delay(1500);
+//	SYN_FrameInfo(2, "[d][v7][m1][t5]这是语音合成模块syn6288");
 //	My_RTC_settime(); // rtc实时始终设置时间
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	Relay_init(); //继电器初始化
@@ -194,7 +211,6 @@ void Hardware_init(void)
 ////		Send_printf("end=%d\r\n,hum=%d",SysTick_GetTick(),data.humidity);
 ////	}
 }
-
 
 
 

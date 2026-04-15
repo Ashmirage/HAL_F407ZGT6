@@ -61,6 +61,8 @@ void Error_Handler(void);
 #define LED_RED_GPIO_Port GPIOF
 #define LED_GREEN_Pin GPIO_PIN_10
 #define LED_GREEN_GPIO_Port GPIOF
+#define HW_Pin GPIO_PIN_13
+#define HW_GPIO_Port GPIOB
 #define Countsensor_Pin GPIO_PIN_14
 #define Countsensor_GPIO_Port GPIOB
 #define Countsensor_EXTI_IRQn EXTI15_10_IRQn
