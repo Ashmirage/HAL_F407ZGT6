@@ -66,6 +66,10 @@ void Error_Handler(void);
 #define Countsensor_Pin GPIO_PIN_14
 #define Countsensor_GPIO_Port GPIOB
 #define Countsensor_EXTI_IRQn EXTI15_10_IRQn
+#define IIC_SCL_Pin GPIO_PIN_8
+#define IIC_SCL_GPIO_Port GPIOB
+#define IIC_SDA_Pin GPIO_PIN_9
+#define IIC_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

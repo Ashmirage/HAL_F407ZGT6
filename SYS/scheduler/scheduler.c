@@ -12,6 +12,7 @@
 #include "CountSensor.h"
 #include "syn6288.h"
 #include "HW.h"
+#include "24cxx.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -51,7 +52,7 @@ static void Loop_50hz(void)
 //	Buzzer_alarm(20); //蜂鸣器报警
 //	APP_control(); //手动控制
 //	Send_printf("count=%d\r\n",CountSensor_Get());
-	Send_printf("is_blocked=%d\r\n",HW_GetData()) ;
+//	Send_printf("is_blocked=%d\r\n",HW_GetData()) ;
 }
 
 // 500ms执行一次
@@ -81,12 +82,21 @@ static void Loop_2hz(void)
 
 u8 x=0;	
 // 1s执行一次
+const uint8_t write[] = {0x12,0x34,0x56};
+uint8_t read[] = {0x00,0x00,0x00};
 static void Loop_1hz(void)
 {
+	
 	LCD_ShowHZ24_Dot(0,0,HZ24_NI,1);
 	LCD_ShowHZ24_Dot(30,0,HZ24_HAO,1);
 	LCD_ShowHZ24_Dot(60,0,HZ24_SHI,1);
 	LCD_ShowHZ24_Dot(90,0,HZ24_JIE,1);
+	
+	at24cxx_read(0,read,3);
+	LCD_ShowxNum(0,200,read[0],3,24,1);
+	LCD_ShowxNum(0,300,read[1],3,24,1);
+	LCD_ShowxNum(0,400,read[2],3,24,1);
+//	LCD_ShowNum(0,200,)
 //	switch(x)
 //	{
 //		case 0:LCD_Clear(WHITE);break;
@@ -175,6 +185,7 @@ void Hardware_init(void)
 	remote_init(); //红外遥控器初始化
 	CountSensor_Init(); //对射式红外传感器初始化
 	HW_Init(); //光电红外传感器初始化
+	at24cxx_init(); //EEPROM初始化
 //	SYN_FrameInfo(2, "[d][v7][m1][t5]");
 //	SYN_FrameInfo(2, "[d][v7][m1][t5]\xBB\xB6\xD3\xAD\xCA\xB9\xD3\xC3\xC2\xCC\xC9\xEE\xC6\xEC\xBD\xA2\xB5\xEASYN6288\xD3\xEF\xD2\xF4\xBA\xCF\xB3\xC9\xC4\xA3\xBF\xE9");
 //	HAL_Delay(1500);
@@ -194,6 +205,14 @@ void Hardware_init(void)
 //	LED_init(); //LED初始化
 //	Buzzer_init(); //蜂鸣器初始化
 	LCD_Init(); //LCD显示屏初始化
+	while (at24cxx_check()) /* 检测不到24c02 */
+    {
+        Send_printf("24C02 Check Failed!\r\n");
+        HAL_Delay(500);
+    }
+	Send_printf("check success!\r\n");
+	HAL_Delay(500);
+	at24cxx_write(0,write,3);
 //	Lcd_bootup_scrolling(); // 
 //	Relay_init(); //继电器初始化
 //	Motor_init();//直流电机初始化

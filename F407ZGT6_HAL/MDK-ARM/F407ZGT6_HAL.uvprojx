@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;../../BSP/Relay;../../BSP/Buzzer;../../BSP/DHT11;../../SYS/scheduler;../../SYS/delay_us;../../BSP/LCD;../../BSP/sys;../../BSP/UI;../../BSP/REMOTE;../../BSP/Countsensor;../../BSP/SYN6288;..\..\BSP\HW</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;../../BSP/Relay;../../BSP/Buzzer;../../BSP/DHT11;../../SYS/scheduler;../../SYS/delay_us;../../BSP/LCD;../../BSP/sys;../../BSP/UI;../../BSP/REMOTE;../../BSP/Countsensor;../../BSP/SYN6288;../../BSP/HW;..\..\BSP\24CXX;..\..\BSP\IIC</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1309,6 +1309,26 @@
               <FileName>HW.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\BSP\HW\HW.h</FilePath>
+            </File>
+            <File>
+              <FileName>24cxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\24CXX\24cxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>24cxx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\24CXX\24cxx.h</FilePath>
+            </File>
+            <File>
+              <FileName>myiic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\IIC\myiic.c</FilePath>
+            </File>
+            <File>
+              <FileName>myiic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\IIC\myiic.h</FilePath>
             </File>
           </Files>
         </Group>
