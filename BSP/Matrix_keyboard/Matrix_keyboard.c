@@ -1,23 +1,25 @@
 #include "stm32f4xx.h"
 #include <stdio.h>
 
-#define ROW1_GPIO_PORT GPIOB //row1的端口
-#define ROW2_GPIO_PORT GPIOD //row2的端口
-#define ROW3_GPIO_PORT GPIOG //row3的端口
-#define ROW4_GPIO_PORT GPIOG //row4的端口
-#define ROW1_GPIO_PIN GPIO_PIN_15 //row1的引脚
+#define ROW1_GPIO_PORT GPIOA //row1的端口
+#define ROW2_GPIO_PORT GPIOA //row2的端口
+#define ROW3_GPIO_PORT GPIOB //row3的端口
+#define ROW4_GPIO_PORT GPIOB //row4的端口
+#define ROW1_GPIO_PIN GPIO_PIN_11 //row1的引脚
 #define ROW2_GPIO_PIN GPIO_PIN_12 //row2的引脚
-#define ROW3_GPIO_PIN GPIO_PIN_2 //row3的引脚
-#define ROW4_GPIO_PIN GPIO_PIN_4//row4的引脚
+#define ROW3_GPIO_PIN GPIO_PIN_0 //row3的引脚
+#define ROW4_GPIO_PIN GPIO_PIN_1//row4的引脚
 
-#define COL1_GPIO_PORT GPIOA //col1的端口
-#define COL2_GPIO_PORT GPIOA //col2的端口
-#define COL3_GPIO_PORT GPIOA //col3的端口
-#define COL4_GPIO_PORT GPIOC //col4的端口
+#define COL1_GPIO_PORT GPIOB //col1的端口
+#define COL2_GPIO_PORT GPIOB //col2的端口
+#define COL3_GPIO_PORT GPIOB //col3的端口
+#define COL4_GPIO_PORT GPIOB //col4的端口
 #define COL1_GPIO_PIN GPIO_PIN_6 //col1的引脚
-#define COL2_GPIO_PIN GPIO_PIN_4 //col2的引脚
-#define COL3_GPIO_PIN GPIO_PIN_1 //col3的引脚
-#define COL4_GPIO_PIN GPIO_PIN_2 //col4的引脚
+#define COL2_GPIO_PIN GPIO_PIN_7 //col2的引脚
+#define COL3_GPIO_PIN GPIO_PIN_10 //col3的引脚
+#define COL4_GPIO_PIN GPIO_PIN_11 //col4的引脚
+
+#define KEY_DEBOUNCE_MS 20U
 
 // 结构体定义
 struct Matrix_port_pin
@@ -140,12 +142,4 @@ uint8_t Matrix_keyboard_get_number(void)
 	}
 	return 0;
 }
-
-
-
-
-
-
-
-
 

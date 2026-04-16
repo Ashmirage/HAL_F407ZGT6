@@ -2,9 +2,6 @@
 
 #define Buzzer_PORT GPIOF
 #define Buzzer_PIN GPIO_PIN_8
-#define Buzzer_CLK_FUNCTION() RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
-
-
 
 void Buzzer_init(void)
 {
@@ -23,7 +20,6 @@ void Buzzer_OFF(void)
 }
 
 static uint8_t alarm_mode = 0; //默认非报警模式
-
 
 void Buzzer_alarm_start(void)
 {

@@ -11,7 +11,7 @@
 // 得到电位器的AD通道值
 uint16_t Pot_GetData(void)
 {
-	return AD_Value[1];
+	return AD_Value[0];
 }
 
 //得到电位器的模拟电压值
