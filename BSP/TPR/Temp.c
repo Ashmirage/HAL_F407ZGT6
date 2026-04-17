@@ -7,7 +7,7 @@
 // 计算电阻
 float Temp_get_r(void)
 {
-	float Vout = AD_Value[0] * TEMP_VS / 4095.0f;
+	float Vout = AD_Value[2] * TEMP_VS / 4095.0f;
 
 
     // 限幅，避免除0/负数

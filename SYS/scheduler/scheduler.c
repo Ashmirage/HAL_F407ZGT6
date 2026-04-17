@@ -14,6 +14,7 @@
 #include "HW.h"
 #include "24cxx.h"
 #include "AD.h"
+#include "LDR.h"
 
 //uint8_t MID;							//定义用于存放MID号的变量
 //uint16_t DID;							//定义用于存放DID号的变量
@@ -27,7 +28,7 @@ static void Loop_1000hz(void)
 {
 //	APP_data_update(); //信息采集
 //	Stepmotor_Rhythm_1ms(); // 步进电机
-//	LDR_ADC_Read_1ms(); //光敏ADC采样读取
+	LDR_ADC_Read_1ms(); //光敏ADC采样读取
 }
 
 // 2ms执行一次
@@ -47,15 +48,22 @@ static void Loop_200hz(void)
 }
 
 #include "pot.h"
+#include "Temp.h"
 // 20ms执行一次
 static void Loop_50hz(void)
 {
+	Send_printf("Lux=%d,Pot=%d,temp=%.3f\r\n",LDR_LuxData(),AD_Value[0],Temp_get_t());
+	uint8_t num = Matrix_keyboard_get_number();
+	if(num != 0){
+		Send_printf("num=%d\r\n",num) ;
+	}
+	uint16_t command = remote_scan();
+	if(command != 0)
+	{
+		Send_printf("command=%d\r\n",command);
+	}
 	
-//	uint8_t num = Matrix_keyboard_get_number();
-//	if(num != 0){
-//		Send_printf("num=%d\r\n",num) ;
-//	}
-//	Send_printf("POT=%d\r\n",Pot_GetData());
+	//	Send_printf("POT=%d\r\n",Pot_GetData());
 //	APP(20); //APP业务
 //	Buzzer_alarm(20); //蜂鸣器报警
 //	APP_control(); //手动控制
@@ -88,25 +96,19 @@ static void Loop_2hz(void)
 ////	Send_printf("%c%c%c%c%c%c\r\n",ArrayRead[0],ArrayRead[1],ArrayRead[2],ArrayRead[3],ArrayRead[4],ArrayRead[5]);
 }
 
-u8 x=0;	
+#include "DHT11.h"
 // 1s执行一次
-#include "Motor.h"
-const uint8_t write[] = {0x12,0x34,0x56};
-uint8_t read[] = {0x00,0x00,0x00};
-static int16_t speed = 0;
-int8_t dir = 1;
+//const uint8_t write[] = {0x12,0x34,0x56};
+//uint8_t read[] = {0x00,0x00,0x00};
+uint8_t x = 0;
 static void Loop_1hz(void)
 {
-	Motor_set_speed(speed);
-	speed += 20*dir;
-	if(speed >= 100){
-	   speed = 100;
-		dir = -dir;
-	}else if(speed <= -100){
-		speed = -100;
-		dir = -dir;
-	}
-	Send_printf("speed=%d\r\n",speed);
+//	struct DHT11_data data = DHT11_read_data();
+//	if(data.status == DHT11_DATA_OK)
+//	{
+//		Send_printf("hum=%d",data.humidity);
+//	}
+
 //	LCD_ShowHZ24_Dot(0,0,HZ24_NI,1);
 //	LCD_ShowHZ24_Dot(30,0,HZ24_HAO,1);
 //	LCD_ShowHZ24_Dot(60,0,HZ24_SHI,1);
@@ -117,24 +119,24 @@ static void Loop_1hz(void)
 //	LCD_ShowxNum(0,300,read[1],3,24,1);
 //	LCD_ShowxNum(0,400,read[2],3,24,1);
 //	LCD_ShowNum(0,200,)
-//	switch(x)
-//	{
-//		case 0:LCD_Clear(WHITE);break;
-//		case 1:LCD_Clear(BLACK);break;
-//		case 2:LCD_Clear(BLUE);break;
-//		case 3:LCD_Clear(RED);break;
-//		case 4:LCD_Clear(MAGENTA);break;
-//		case 5:LCD_Clear(GREEN);break;
-//		case 6:LCD_Clear(CYAN);break;
+	switch(x)
+	{
+		case 0:LCD_Clear(WHITE);break;
+		case 1:LCD_Clear(BLACK);break;
+		case 2:LCD_Clear(BLUE);break;
+		case 3:LCD_Clear(RED);break;
+		case 4:LCD_Clear(MAGENTA);break;
+		case 5:LCD_Clear(GREEN);break;
+		case 6:LCD_Clear(CYAN);break;
 
-//		case 7:LCD_Clear(YELLOW);break;
-//		case 8:LCD_Clear(BRRED);break;
-//		case 9:LCD_Clear(GRAY);break;
-//		case 10:LCD_Clear(LGRAY);break;
-//		case 11:LCD_Clear(BROWN);break;
-//	}
-//	x++;
-//	if(x==12)x=0;
+		case 7:LCD_Clear(YELLOW);break;
+		case 8:LCD_Clear(BRRED);break;
+		case 9:LCD_Clear(GRAY);break;
+		case 10:LCD_Clear(LGRAY);break;
+		case 11:LCD_Clear(BROWN);break;
+	}
+	x++;
+	if(x==12)x=0;
 //	My_RTC_readtime();
 //	Send_printf("%d-%d-%d %d-%d-%d\r\n",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
 
@@ -225,7 +227,7 @@ void Hardware_init(void)
 //	Matrix_keyboard_init(); //矩阵键盘初始化
 //	LED_init(); //LED初始化
 //	Buzzer_init(); //蜂鸣器初始化
-//	LCD_Init(); //LCD显示屏初始化
+	LCD_Init(); //LCD显示屏初始化
 //	while (at24cxx_check()) /* 检测不到24c02 */
 //    {
 //        Send_printf("24C02 Check Failed!\r\n");
@@ -236,7 +238,7 @@ void Hardware_init(void)
 //	at24cxx_write(0,write,3);
 //	Lcd_bootup_scrolling(); // 
 //	Relay_init(); //继电器初始化
-	Motor_init();//直流电机初始化
+//	Motor_init();//直流电机初始化
 //	STEPMOTOR_Init(); //步进电机初始化
 //	W25Q128_Init(); //FLASH初始化
 //	RTC_clk_init(); //RTC初始化

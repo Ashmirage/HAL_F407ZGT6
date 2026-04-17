@@ -39,4 +39,4 @@ uint16_t raw = AD_Value[0];
 
 - 当前 `HAL_ADC_Start_DMA(&hadc3, (uint32_t *)AD_Value, 1)` 长度是 `1`
 - 若你要用 `AD_Value[1..3]`，需要同步检查 ADC 多通道与 DMA 长度
-
+- 使用多个通道加DMA转运时,增加采样时间,否则程序一直进中断卡住

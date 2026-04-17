@@ -20,14 +20,14 @@
 
 | 矩阵键盘 | STM32 |
 |---|---|
-| Row1 | PB15 |
-| Row2 | PD12 |
-| Row3 | PG2 |
-| Row4 | PG4 |
-| Col1 | PA6 |
-| Col2 | PA4 |
-| Col3 | PA1 |
-| Col4 | PC2 |
+| Row1 | PE6 |
+| Row2 | PE4 |
+| Row3 | PE2 |
+| Row4 | PE0 |
+| Col1 | PC0 |
+| Col2 | PC1 |
+| Col3 | PC2 |
+| Col4 | PC3 |
 
 ---
 

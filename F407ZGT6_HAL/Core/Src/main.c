@@ -24,6 +24,7 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
+#include "fsmc.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -99,6 +100,7 @@ int main(void)
   MX_TIM1_Init();
   MX_ADC3_Init();
   MX_TIM3_Init();
+  MX_FSMC_Init();
   /* USER CODE BEGIN 2 */
   Scheduler_init(); // 任务调度器初始化
   Hardware_init(); // 硬件初始�?
