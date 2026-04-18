@@ -57,6 +57,8 @@
 "f407zgt6_hal\dht11.o"
 "f407zgt6_hal\ldr.o"
 "f407zgt6_hal\temp.o"
+"f407zgt6_hal\stepmotor.o"
+"f407zgt6_hal\rtc_clk.o"
 "f407zgt6_hal\scheduler.o"
 "f407zgt6_hal\delay_us.o"
 "f407zgt6_hal\sys.o"

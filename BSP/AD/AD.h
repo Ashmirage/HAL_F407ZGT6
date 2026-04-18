@@ -4,6 +4,7 @@
 
 
 extern volatile uint16_t AD_Value[4];
+extern volatile uint16_t light_data;
 void AD_init(void);
 
 

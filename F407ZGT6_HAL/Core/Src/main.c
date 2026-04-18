@@ -101,6 +101,7 @@ int main(void)
   MX_ADC3_Init();
   MX_TIM3_Init();
   MX_FSMC_Init();
+  MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
   Scheduler_init(); // 任务调度器初始化
   Hardware_init(); // 硬件初始�?

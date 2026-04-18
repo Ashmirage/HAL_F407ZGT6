@@ -48,7 +48,7 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>F407ZGT6_HAL\</OutputDirectory>
+          <OutputDirectory>.\</OutputDirectory>
           <OutputName>F407ZGT6_HAL</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
@@ -56,7 +56,7 @@
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath></ListingPath>
-          <HexFormatSelection>1</HexFormatSelection>
+          <HexFormatSelection>0</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
           <BeforeCompile>
@@ -120,7 +120,7 @@
         </DllOption>
         <DebugOption>
           <OPTHX>
-            <HexSelection>1</HexSelection>
+            <HexSelection>0</HexSelection>
             <HexRangeLowAddress>0</HexRangeLowAddress>
             <HexRangeHighAddress>0</HexRangeHighAddress>
             <HexOffset>0</HexOffset>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;../../BSP/Relay;../../BSP/Buzzer;../../BSP/DHT11;../../SYS/scheduler;../../SYS/delay_us;../../BSP/LCD;../../BSP/sys;../../BSP/UI;../../BSP/REMOTE;../../BSP/Countsensor;../../BSP/SYN6288;../../BSP/HW;../../BSP/24CXX;../../BSP/IIC;../../BSP/Pot;../../BSP/AD;../../BSP/Motor;../../BSP/LDR;..\..\BSP\TPR</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../../SYS;../../BSP/LED;../../BSP/Matrix_keyboard;../../BSP/Usart;../../BSP/Relay;../../BSP/Buzzer;../../BSP/DHT11;../../SYS/scheduler;../../SYS/delay_us;../../BSP/LCD;../../BSP/sys;../../BSP/UI;../../BSP/REMOTE;../../BSP/Countsensor;../../BSP/SYN6288;../../BSP/HW;../../BSP/24CXX;../../BSP/IIC;../../BSP/Pot;../../BSP/AD;../../BSP/Motor;../../BSP/LDR;../../BSP/TPR;../../BSP/Stepmotor;../../BSP/RTC_CLK</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1659,6 +1659,26 @@
               <FileName>Temp.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\BSP\TPR\Temp.h</FilePath>
+            </File>
+            <File>
+              <FileName>stepmotor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\Stepmotor\stepmotor.c</FilePath>
+            </File>
+            <File>
+              <FileName>stepmotor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\Stepmotor\stepmotor.h</FilePath>
+            </File>
+            <File>
+              <FileName>RTC_clk.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\RTC_CLK\RTC_clk.c</FilePath>
+            </File>
+            <File>
+              <FileName>RTC_clk.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\RTC_CLK\RTC_clk.h</FilePath>
             </File>
           </Files>
         </Group>

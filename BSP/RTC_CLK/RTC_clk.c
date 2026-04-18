@@ -7,6 +7,7 @@
 volatile uint16_t My_RTC_time[] = {26,4,5,23,5,0};
 
 
+
 void My_RTC_settime(void)
 {
 	// 判断是否需要初始化,读取bkp的数据

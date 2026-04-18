@@ -20,7 +20,7 @@ static uint16_t average_data = 0;
 void LDR_ADC_Read_1ms(void)
 {
 	static uint8_t cnt = 0;
-	ldr_data[cnt++] = AD_Value[1];
+	ldr_data[cnt++] = light_data;
 	if(cnt >= LDR_READ_TIMES)
 	{
 		cnt = 0;

@@ -1,0 +1,268 @@
+<html>
+<body>
+<pre>
+<h1>�Vision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ��Vision V5.36.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 A, 1, LIC=JL28G-V2ICW-636MB-2AYSA-XWRZ6-1I2Q8
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.36.0.0
+Toolchain Path:  D:\develop\keil\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.16
+Assembler:       Armasm.exe V6.16
+Linker/Locator:  ArmLink.exe V6.16
+Library Manager: ArmAr.exe V6.16
+Hex Converter:   FromElf.exe V6.16
+CPU DLL:         SARMCM3.DLL V5.36.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      Segger\JL2CM3.dll V2.99.40.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+C:\Users\A\Mycode\STM32\F407ZGT6_HAL\MDK-ARM\F407ZGT6_HAL.uvprojx
+Project File Date:  04/18/2026
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.16', folder: 'D:\develop\keil\ARM\ARMCLANG\Bin'
+Rebuild target 'F407ZGT6_HAL'
+assembling startup_stm32f407xx.s...
+compiling fsmc.c...
+compiling dma.c...
+compiling usart.c...
+compiling stm32f4xx_hal_msp.c...
+compiling gpio.c...
+compiling rtc.c...
+compiling stm32f4xx_it.c...
+compiling main.c...
+compiling tim.c...
+compiling adc.c...
+compiling stm32f4xx_ll_adc.c...
+compiling stm32f4xx_hal_adc.c...
+compiling stm32f4xx_hal_adc_ex.c...
+compiling stm32f4xx_hal_rcc.c...
+compiling stm32f4xx_hal_flash_ramfunc.c...
+compiling stm32f4xx_hal_rcc_ex.c...
+compiling stm32f4xx_hal_flash.c...
+compiling stm32f4xx_hal_flash_ex.c...
+compiling stm32f4xx_hal_gpio.c...
+compiling stm32f4xx_hal_dma_ex.c...
+compiling stm32f4xx_hal_dma.c...
+compiling stm32f4xx_hal_pwr_ex.c...
+compiling stm32f4xx_hal_pwr.c...
+compiling stm32f4xx_hal.c...
+compiling stm32f4xx_hal_exti.c...
+compiling stm32f4xx_hal_cortex.c...
+compiling stm32f4xx_hal_nor.c...
+compiling stm32f4xx_ll_fsmc.c...
+compiling stm32f4xx_hal_nand.c...
+compiling stm32f4xx_hal_sram.c...
+compiling stm32f4xx_hal_pccard.c...
+compiling stm32f4xx_hal_rtc.c...
+compiling stm32f4xx_hal_rtc_ex.c...
+compiling system_stm32f4xx.c...
+compiling led.c...
+compiling Matrix_keyboard.c...
+compiling stm32f4xx_hal_tim_ex.c...
+compiling Relay.c...
+compiling my_usart.c...
+compiling Buzzer.c...
+compiling stm32f4xx_hal_uart.c...
+compiling remote.c...
+compiling TIM_All_callback.c...
+compiling stm32f4xx_hal_tim.c...
+compiling CountSensor.c...
+compiling EXTI_All_callback.c...
+compiling HW.c...
+../../BSP/UI/UI.c(190): warning: passing 'char [7]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+        at24cxx_read(0,default_password,7) ;
+                       ^~~~~~~~~~~~~~~~
+../../BSP/24CXX\24cxx.h(49): note: passing argument to parameter 'pbuf' here
+void at24cxx_read(uint16_t addr, uint8_t *pbuf, uint16_t datalen);  /* <B4><D3>ָ<B6><A8><B5><D8>ַ<BF><AA>ʼ<B6><C1><B3><F6>ָ<B6><A8><B3><A4><B6>ȵ<C4><CA><FD><BE><DD> */
+                                          ^
+../../BSP/UI/UI.c(336): warning: passing 'const char [27]' to parameter of type 'u8 *' (aka 'unsigned char *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+                LCD_ShowString(0,250,320,24,24,blank);
+                                               ^~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(367): warning: passing 'char [7]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        at24cxx_write(0,default_password,7); //写入flash,掉电不丢失
+                                        ^~~~~~~~~~~~~~~~
+../../BSP/24CXX\24cxx.h(48): note: passing argument to parameter 'pbuf' here
+void at24cxx_write(uint16_t addr, uint8_t *pbuf, uint16_t datalen); /* <B4><D3>ָ<B6><A8><B5><D8>ַ<BF><AA>ʼд<C8><EB>ָ<B6><A8><B3><A4><B6>ȵ<C4><CA><FD><BE><DD> */
+                                           ^
+../../BSP/UI/UI.c(383): warning: passing 'const char [27]' to parameter of type 'u8 *' (aka 'unsigned char *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+                LCD_ShowString(0,250,320,24,24,blank);
+                                               ^~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(435): warning: passing 'char [23]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,200,320,24,24,"please input password:");
+                                                       ^~~~~~~~~~~~~~~~~~~~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(504): warning: passing 'char [5]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,24,70,24,24,"Temp");
+                                                     ^~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(506): warning: passing 'char [3]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(250,24,70,24,24,"'C");
+                                                       ^~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(507): warning: passing 'char [4]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,48,70,24,24,"hum");
+                                                     ^~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(509): warning: passing 'char [3]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(250,48,70,24,24," %");
+                                                       ^~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(510): warning: passing 'char [6]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,72,70,24,24,"Light");
+                                                     ^~~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(512): warning: passing 'char [4]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(250,72,70,24,24,"Lux");
+                                                       ^~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(513): warning: passing 'char [6]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,96,70,24,24,"motor");
+                                                     ^~~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(516): warning: passing 'char [3]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                LCD_ShowString(160,96,160,24,24,"ON");
+                                                                ^~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(519): warning: passing 'char [4]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                LCD_ShowString(160,96,160,24,24,"OFF");
+                                                                ^~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(523): warning: passing 'char [5]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,144,160,24,24,"LED:");
+                                                       ^~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(526): warning: passing 'char [3]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                LCD_ShowString(160,144,160,24,24,"ON");
+                                                                 ^~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(529): warning: passing 'char [4]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                LCD_ShowString(160,144,160,24,24,"OFF");
+                                                                 ^~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(531): warning: passing 'char [5]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,168,70,24,24,"mode");
+                                                      ^~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(534): warning: passing 'char [12]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                LCD_ShowString(160,168,160,24,24,"Manual mode");
+                                                                 ^~~~~~~~~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(537): warning: passing 'char [10]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                                LCD_ShowString(160,168,160,24,24,"Auto mode");
+                                                                 ^~~~~~~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(539): warning: passing 'char [8]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,192,70,24,24,"curtain");
+                                                      ^~~~~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(541): warning: passing 'char [3]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(200,192,160,24,24," %");
+                                                         ^~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(543): warning: passing 'char [5]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(0,216,70,24,24,"time");
+                                                      ^~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+../../BSP/UI/UI.c(545): warning: passing 'char [50]' to parameter of type 'u8 *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        LCD_ShowString(120,216,200,24,24,show_time_str);
+                                                         ^~~~~~~~~~~~~
+../../BSP/LCD\lcd.h(167): note: passing argument to parameter 'p' here
+void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p);            //<CF><D4>ʾһ<B8><F6><D7>ַ<FB><B4><AE>,12/16<D7><D6><CC><E5>
+                                                                 ^
+24 warnings generated.
+compiling UI.c...
+compiling 24cxx.c...
+compiling myiic.c...
+compiling AD.c...
+compiling lcd.c...
+compiling pot.c...
+compiling Motor.c...
+compiling LDR.c...
+compiling DHT11.c...
+compiling Temp.c...
+compiling stepmotor.c...
+compiling RTC_clk.c...
+compiling sys.c...
+compiling delay_us.c...
+compiling scheduler.c...
+linking...
+Program Size: Code=53986 RO-data=7730 RW-data=144 ZI-data=2640  
+FromELF: creating hex file...
+".\F407ZGT6_HAL.axf" - 0 Error(s), 24 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.2.0.pack
+                Keil.STM32F4xx_DFP.2.2.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_F407ZGT6_HAL
+  D:\develop\keil\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  D:\develop\keil\Arm\Packs\Keil\STM32F4xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+      Include file:  CMSIS\Core\Include\tz_context.h
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>

@@ -4,13 +4,13 @@
 #define STEPMOTOR_A_GPIO_PORT GPIOA
 #define STEPMOTOR_B_GPIO_PORT GPIOA
 #define STEPMOTOR_C_GPIO_PORT GPIOA
-#define STEPMOTOR_D_GPIO_PORT GPIOA
+#define STEPMOTOR_D_GPIO_PORT GPIOB
 
 // 定义4个控制IN的IO引脚
-#define STEPMOTOR_A_PIN				    GPIO_PIN_0
-#define STEPMOTOR_B_PIN 				GPIO_PIN_4
-#define STEPMOTOR_C_PIN 				GPIO_PIN_5
-#define STEPMOTOR_D_PIN 				GPIO_PIN_6
+#define STEPMOTOR_A_PIN				    GPIO_PIN_5
+#define STEPMOTOR_B_PIN 				GPIO_PIN_11
+#define STEPMOTOR_C_PIN 				GPIO_PIN_12
+#define STEPMOTOR_D_PIN 				GPIO_PIN_0
 
 void step_A(uint8_t x) {HAL_GPIO_WritePin(STEPMOTOR_A_GPIO_PORT,STEPMOTOR_A_PIN,(GPIO_PinState)x);}
 void step_B(uint8_t x) {HAL_GPIO_WritePin(STEPMOTOR_B_GPIO_PORT,STEPMOTOR_B_PIN,(GPIO_PinState)x);}
@@ -169,28 +169,28 @@ void Stepmotor_Rhythm_1ms(void)
 //启动电机的函数
 void Stepmotor_angle_dir(uint8_t dir,uint16_t angle,uint16_t interval_ms)
 {
-//	if(curtain >= 100 && dir == 0)
-//	{
-//		return;//窗帘运动到极限,不允许继续移动
-//	}
-//	if(curtain <= 0 && dir == 1)
-//	{
-//		return;//窗帘运动到极限,不允许继续移动
-//	}
+	if(curtain >= 100 && dir == 0)
+	{
+		return;//窗帘运动到极限,不允许继续移动
+	}
+	if(curtain <= 0 && dir == 1)
+	{
+		return;//窗帘运动到极限,不允许继续移动
+	}
 	// 如果忙碌就忽略这个指令
 	if(stepmotor_st.is_busy == 1)
 	{
 		return;
 	}
-//	if(dir == 0)
-//	{
-//		curtain = curtain + angle / 90 * 25;
-//	}else
-//	{
-//		curtain = curtain - angle / 90 * 25;
-//	}
-//	if(curtain < 0){curtain=0;}
-//	if(curtain > 100){curtain=100;}
+	if(dir == 0)
+	{
+		curtain = curtain + angle / 90 * 25;
+	}else
+	{
+		curtain = curtain - angle / 90 * 25;
+	}
+	if(curtain < 0){curtain=0;}
+	if(curtain > 100){curtain=100;}
 	stepmotor_st.dir = dir; //设置方向
 	stepmotor_st.remain_phrases = 64*angle/45*8; //计算步数
 	stepmotor_st.Rhythm_index = 0; //初始化状态
@@ -213,13 +213,13 @@ uint8_t Stepmotor_is_run(void)
 void Stepmotor_light_control(uint16_t light)
 {
 	
-	if(light < 250)//第一档
+	if(light < 50)//第一档
 	{
 		if(curtain != 0)
 		{
 			Stepmotor_angle_dir(1,curtain / 25 * 90,1); //反方向转
 		}
-	}else if(light < 500)
+	}else if(light < 100)
 	{
 		if(curtain < 25)
 		{
@@ -228,7 +228,7 @@ void Stepmotor_light_control(uint16_t light)
 		{
 			Stepmotor_angle_dir(1,(curtain-25) / 25 * 90,1); //反方向转
 		}
-	}else if(light < 750)
+	}else if(light < 150)
 	{
 		if(curtain < 50)
 		{
@@ -237,7 +237,7 @@ void Stepmotor_light_control(uint16_t light)
 		{
 			Stepmotor_angle_dir(1,(curtain-50) / 25 * 90,1); //反方向转
 		}
-	}else
+	}else if(light < 200)
 	{
 		if(curtain < 75)
 		{
@@ -245,6 +245,13 @@ void Stepmotor_light_control(uint16_t light)
 		}else if(curtain > 75)
 		{
 			Stepmotor_angle_dir(1,(curtain-75) / 25 * 90,1); //反方向转
+		}
+	}
+	else
+	{
+		if(curtain < 100)
+		{
+			Stepmotor_angle_dir(0,(100 - curtain) / 25 * 90,1); //正方向转
 		}
 	}
 }

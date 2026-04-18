@@ -9,6 +9,7 @@ void Relay_init(void)
 	HAL_GPIO_WritePin(RELAY_GPIO_PORT,RELAY_GPIO_PIN,GPIO_PIN_RESET);  //高电平有效,默认失效
 }
 
+
 // 接通
 void Relay_on(void)
 {
