@@ -59,6 +59,7 @@
 ".\temp.o"
 ".\stepmotor.o"
 ".\rtc_clk.o"
+".\syn6288.o"
 ".\scheduler.o"
 ".\delay_us.o"
 ".\sys.o"

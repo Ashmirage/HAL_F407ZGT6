@@ -22,7 +22,7 @@ typedef enum{
 }APP_STATUS;
 	
 volatile static APP_STATUS app_status;
-const char blank[] = "                          ";
+char blank[] = "                          ";
 
 #define UI_FONT_SIZE         24U // 字体大小
 #define UI_CHAR_WIDTH        24U   // 间距宽度
@@ -542,7 +542,7 @@ void APP_show_info(void)
 			// 显示时间
 			LCD_ShowString(0,216,70,24,24,"time");
 			sprintf(show_time_str,"%d-%d-%d %d:%d:%d",My_RTC_time[0],My_RTC_time[1],My_RTC_time[2],My_RTC_time[3],My_RTC_time[4],My_RTC_time[5]);
-			LCD_ShowString(120,216,200,24,24,show_time_str);
+			LCD_ShowString(120,216,240,24,24,show_time_str);
 		}
 	}
 }

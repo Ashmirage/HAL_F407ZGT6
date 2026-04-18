@@ -1680,6 +1680,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\BSP\RTC_CLK\RTC_clk.h</FilePath>
             </File>
+            <File>
+              <FileName>syn6288.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\SYN6288\syn6288.c</FilePath>
+            </File>
+            <File>
+              <FileName>syn6288.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\SYN6288\syn6288.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -17,6 +17,8 @@
 #include "stepmotor.h"
 #include "UI.h"
 #include "RTC_clk.h"
+#include "syn6288.h"
+#include "usart.h"
 
 
 //uint8_t MID;							//定义用于存放MID号的变量
@@ -154,6 +156,13 @@ void Hardware_init(void)
 	APP_init(); //开机动画
 	Send_printf("???\r\n");
 	My_RTC_settime();
+	SYN6288_Init(&huart6);
+	static const char syn6288_demo_text_utf8[] =
+    "[v7][m1][t5]欢迎使用绿深旗舰店SYN6288语音合成模块";
+  (void)SYN_FrameInfoUtf8(2U, syn6288_demo_text_utf8);
+	Send_printf("11111");
+	//暂停合成，此时没有用到，用于展示函数用法
+	//YS_SYN_Set(SYN_SuspendCom);
 //	remote_init(); //红外遥控器初始化
 //	CountSensor_Init(); //对射式红外传感器初始化
 //	HW_Init(); //光电红外传感器初始化

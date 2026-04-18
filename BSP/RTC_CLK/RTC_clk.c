@@ -2,9 +2,9 @@
 #include "RTC_clk.h"
 #include "rtc.h"
 
-#define RTC_INIT_FLAG 0x6666
+#define RTC_INIT_FLAG 0x7777
 
-volatile uint16_t My_RTC_time[] = {26,4,5,23,5,0};
+volatile uint16_t My_RTC_time[] = {26,4,18,13,47,30};
 
 
 
